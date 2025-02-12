@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MoviesModel;
 use Illuminate\Http\Request;
 
 class MoviesController extends Controller
 {
     public function allMovies()
     {
-        return view("movies.allMovies");
+        $movies = MoviesModel::all();
+        return view("movies.allMovies", compact("movies"));
     }
 }

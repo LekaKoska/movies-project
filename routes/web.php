@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminMoviesController;
+use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/',  'welcome');
@@ -16,6 +19,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get("/movies", [\App\Http\Controllers\MoviesController::class, "allMovies"]);
+Route::get("/movies", [MoviesController::class, "allMovies"]);
+
+Route::middleware(['auth', AdminCheckMiddleware::class])->prefix("admin")->group(function ()
+{
+    Route::get("/all-movies",[AdminMoviesController::class, "allMovies"]);
+    Route::get("/delete-movie/{id}", [AdminMoviesController::class, "delete"])
+    ->name("movie.delete");
+    Route::get("/edit-movie/{id}", [AdminMoviesController::class, "edit"]);
+});
+
 
 require __DIR__.'/auth.php';
