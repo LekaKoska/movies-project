@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MoviesModel extends Model
 {
-    protected $table = "movies_project";
+    protected $table = "movies";
 
     protected $fillable = ["title", "description", "author"];
 }
