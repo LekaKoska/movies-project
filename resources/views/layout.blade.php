@@ -9,6 +9,8 @@
     <title>Document</title>
 </head>
 <body>
+@include("navigationBar")
+
 @yield("content")
 
 </body>

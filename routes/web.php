@@ -6,7 +6,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/',  'welcome');
+Route::view('/',  'welcome')
+->name("homepage");
+
 
 
 Route::get('/dashboard', function () {
@@ -19,7 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get("/movies", [MoviesController::class, "allMovies"]);
+
+Route::get("/movies", [MoviesController::class, "allMovies"])
+->name("movies.all");
 
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix("admin")->group(function ()
 {
