@@ -26,7 +26,9 @@ Route::middleware(['auth', AdminCheckMiddleware::class])->prefix("admin")->group
     Route::get("/all-movies",[AdminMoviesController::class, "allMovies"]);
     Route::get("/delete-movie/{id}", [AdminMoviesController::class, "delete"])
     ->name("movie.delete");
-    Route::get("/edit-movie/{id}", [AdminMoviesController::class, "edit"]);
+    Route::get("/edit-movie/{movie}", [AdminMoviesController::class, "edit"]);
+    Route::post("/save-movie/{saveMovie}", [AdminMoviesController::class, "save"])
+    ->name("movie.edit");
 });
 
 
