@@ -19,13 +19,16 @@
                         <a class="nav-link active" aria-current="page" href="{{route("movies.all")}}">Movies</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link active" href="{{route("movies.genre")}}">Genre</a>
+                    </li>
+                    <li>
                         <a class="nav-link active" href="#">Favorites</a>
                     </li>
                     <li>
-                        <a class="nav-link active" href="#">My profile</a>
+                        <a class="nav-link active" href="">My profile</a>
                     </li>
-
                 </ul>
+
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>

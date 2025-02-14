@@ -22,9 +22,11 @@ Route::middleware('auth')->group(function () {
 });
 
 
+
 Route::get("/movies", [MoviesController::class, "allMovies"])
 ->name("movies.all");
-
+Route::view("/genres", "movies.allGenres")
+->name("movies.genre");
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix("admin")->group(function ()
 {
     Route::get("/all-movies",[AdminMoviesController::class, "allMovies"]);
