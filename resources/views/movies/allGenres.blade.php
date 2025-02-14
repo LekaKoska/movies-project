@@ -1,4 +1,5 @@
-<!doctype html>
+@php use App\Models\GenreModel; @endphp
+    <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,11 +9,11 @@
 <body>
 @extends("layout")
 @section("content")
-        @foreach(\App\Models\GenreModel::GENRE as $genre)
+    @foreach(GenreModel::GENRE as $genre)
 
-            <p><a href="">{{$genre}}</a> </p>
+        <p><a href="">{{$genre}}</a></p>
 
-        @endforeach
+    @endforeach
 
 @endsection
 </body>

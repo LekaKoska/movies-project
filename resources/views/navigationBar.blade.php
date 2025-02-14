@@ -13,7 +13,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01" >
-                <a class="navbar-brand" href="{{route("homepage")}}">Homepage</a>
+                <a class="navbar-brand" href="{{route("homepage")}}"><i class="fa-solid fa-video"></i></a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route("movies.all")}}">Movies</a>
@@ -29,8 +29,8 @@
                     </li>
                 </ul>
 
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" action="{{route("movies.search")}}" method="GET">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
