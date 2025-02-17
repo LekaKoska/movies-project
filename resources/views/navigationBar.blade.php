@@ -27,15 +27,22 @@
                     <li>
                         <a class="nav-link active" href="">My profile</a>
                     </li>
+                    <li>
+                        <a class="nav-link active" href="">Add movie</a>
+                    </li>
                 </ul>
 
                 <form class="d-flex" action="{{route("movies.search")}}" method="GET">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
+
                 </form>
             </div>
         </div>
     </nav>
+    @if(\Illuminate\Support\Facades\Session::has("error"))
+        <p class="text-danger">{{\Illuminate\Support\Facades\Session::get("error")}}</p>
+    @endif
 
 </body>
 </html>
