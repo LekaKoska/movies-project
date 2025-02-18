@@ -28,7 +28,7 @@
                         <a class="nav-link active" href="">My profile</a>
                     </li>
                     <li>
-                        <a class="nav-link active" href="">Add movie</a>
+                        <a class="nav-link active" href="{{route("movies.addForm")}}">Add movie</a>
                     </li>
                 </ul>
 

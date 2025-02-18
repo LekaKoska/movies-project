@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminMoviesController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AdminCheckMiddleware;
@@ -31,6 +32,15 @@ Route::view("/genres", "movies.allGenres")
 
 Route::get("/search", [MoviesController::class, "search"])
 ->name("movies.search");
+
+Route::get("movie/{movie:title}", [MoviesController::class, "permalink"])
+->name("movies.permalink");
+
+Route::view("/movies/add", 'movies.addMovies')
+->name("movies.addForm");
+
+Route::post("/movies/add/new", [MoviesController::class, "add"])
+->name("movies.add");
 
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix("admin")->group(function ()
 {
