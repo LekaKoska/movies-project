@@ -14,4 +14,7 @@ class MoviesModel extends Model
     {
         return $this->hasOne(GenreModel::class, "movie_id", "id");
     }
+
+
+
 }
