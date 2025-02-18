@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AdminMoviesController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserMoviesController;
 use App\Http\Middleware\AdminCheckMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +43,12 @@ Route::view("/movies/add", 'movies.addMovies')
 
 Route::post("/movies/add/new", [MoviesController::class, "add"])
 ->name("movies.add");
+
+Route::get("/movies/addFavourite/{movie}", [UserMoviesController::class, "favourite"])
+->name("movies.favourite");
+
+Route::get("movies/unfavourite/{movie}", [UserMoviesController::class, "unfavourite"])
+    ->name("movies.unfavourite");
 
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix("admin")->group(function ()
 {

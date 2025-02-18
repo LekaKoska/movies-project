@@ -4,13 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\MoviesModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MoviesController extends Controller
 {
     public function allMovies()
     {
         $movies = MoviesModel::all();
-        return view("movies.allMovies", compact("movies"));
+       $userFavourites = [];
+        if(Auth::check())
+        {
+            $userFavourites = Auth::user()->movieFavourites;
+            $userFavourites = $userFavourites->pluck("movie_id")->toArray();
+        }
+
+        return view("movies.allMovies", compact("movies", "userFavourites"));
+
     }
 
     public function search(Request $request)

@@ -15,7 +15,7 @@
                 <h6 class="card-subtitle mb-2 text-muted">{{$movie->genre->genre}}</h6>
                 <p class="card-text">{{$movie->description}}</p>
                 <p  class="card-text">{{$movie->author}}</p>
-                <a href="#" class="card-link">Add to favorites</a>
+                <a href="" class="card-link">Add to favorites</a>
                 <a href="{{route("movies.permalink", ['movie' => $movie->title])}}" class="card-link">Watch</a>
             </div>
         </div>

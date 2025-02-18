@@ -46,5 +46,9 @@ class User extends Authenticatable
         ];
     }
 
+    public function movieFavourites()
+    {
+        return $this->hasMany(UserMoviesModel::class, "user_id" , "id");
+    }
 
 }
