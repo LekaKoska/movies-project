@@ -15,6 +15,11 @@ class MoviesModel extends Model
         return $this->hasOne(GenreModel::class, "movie_id", "id");
     }
 
+    public function comments()
+    {
+        return $this->hasMany(CommentModel::class, "movie_id" , "id");
+    }
+
 
 
 }

@@ -51,4 +51,9 @@ class User extends Authenticatable
         return $this->hasMany(UserMoviesModel::class, "user_id" , "id");
     }
 
+    public function comments()
+    {
+        return $this->hasMany(CommentModel::class, "user_id" , "id");
+    }
+
 }

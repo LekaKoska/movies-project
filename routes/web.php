@@ -58,6 +58,9 @@ Route::get("/search", [MoviesController::class, "search"])
 Route::get("movie/{movie:title}", [MoviesController::class, "permalink"])
 ->name("movies.permalink");
 
+Route::post("movie/comment/{movie}", [CommentController::class, "comment"])
+->name("movies.comment");
+
 Route::view("/movies/add", 'movies.addMovies')
 ->name("movies.addForm");
 
