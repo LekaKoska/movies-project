@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MoviesModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\AssignOp\Mod;
 
@@ -37,6 +38,13 @@ class AdminMoviesController extends Controller
         $saveMovie->author = $request->get("author");
         $saveMovie->save();
         return redirect("/admin/all-movies");
+    }
+
+    public function users()
+    {
+        $users = User::all();
+
+        return view("admin.allUsers", compact("users"));
     }
 
 }
