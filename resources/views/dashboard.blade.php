@@ -11,8 +11,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("Welcome to first site's for free streaming and watching movies in pre-order!") }}
-                    <a class="underline" href="/">WATCH</a>
+                  <p class="text-danger">{{ __("Welcome to the first site that has movies in pre-order for free!!") }}</p>
+                    <a class="btn btn-primary" href="/">WATCH</a>
                 </div>
             </div>
         </div>
