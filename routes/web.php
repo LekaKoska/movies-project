@@ -7,6 +7,8 @@ use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserMoviesController;
 use App\Http\Middleware\AdminCheckMiddleware;
+use App\Models\UserMoviesModel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/',  'welcome')
@@ -29,6 +31,24 @@ Route::middleware('auth')->group(function () {
 Route::get("/movies", [MoviesController::class, "allMovies"])
 ->name("movies.all");
 
+Route::get("/movies/favourites", function ()
+{
+    $userFavourites = [];
+
+    $user = Auth::user();
+
+    if($user !== null)
+    {
+        $userFavourites = UserMoviesModel::where(
+            [
+                'user_id' => $user->id
+            ]
+        )->get();
+    }
+    return view("movies.favourites", compact("userFavourites"));
+})
+->name("movies.favourites");
+
 Route::view("/genres", "movies.allGenres")
 ->name("movies.genre");
 
@@ -49,6 +69,7 @@ Route::get("/movies/addFavourite/{movie}", [UserMoviesController::class, "favour
 
 Route::get("movies/unfavourite/{movie}", [UserMoviesController::class, "unfavourite"])
     ->name("movies.unfavourite");
+
 
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix("admin")->group(function ()
 {

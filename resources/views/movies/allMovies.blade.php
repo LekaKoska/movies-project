@@ -15,12 +15,12 @@
                 <p class="card-text">{{$movie->description}}</p>
                 <p class="card-text">{{$movie->author}}</p>
                 @if(in_array($movie->id, $userFavourites))
-                    <a href="{{route("movies.unfavourite", ['movie' => $movie->id])}}" class="card-link"><i
-                            class="fa-solid fa-bookmark"></i> Unfavourite </a>
+                    <a href="{{route("movies.unfavourite", ['movie' => $movie->id])}}" class="card-link">
+                        <i class="fa-solid fa-bookmark"> </i>  </a>
 
                 @else
                     <a href="{{route("movies.favourite", ['movie' => $movie->id])}}" class="card-link"><i
-                            class="fa-regular fa-bookmark"></i> Favourite </a>
+                            class="fa-regular fa-bookmark"></i> </a>
                 @endif
 
                 <a href="{{route("movies.permalink", ['movie' => $movie->title])}}" class="card-link">Watch</a>

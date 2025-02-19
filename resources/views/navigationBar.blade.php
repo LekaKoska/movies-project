@@ -22,7 +22,7 @@
                         <a class="nav-link active" href="{{route("movies.genre")}}">Genre</a>
                     </li>
                     <li>
-                        <a class="nav-link active" href="#">Favorites</a>
+                        <a class="nav-link active" href="{{route("movies.favourites")}}">Favorites</a>
                     </li>
                     <li>
                         <a class="nav-link active" href="">My profile</a>
