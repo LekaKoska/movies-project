@@ -48,6 +48,8 @@ class MoviesController extends Controller
 
         MoviesModel::created($request->all());
 
+        return redirect()->back()->with("success", "Movie successfully added!");
+
 
     }
 }

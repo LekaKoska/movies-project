@@ -1,4 +1,4 @@
-@php use App\Models\GenreModel; @endphp
+@php use App\Models\GenreModel;use Illuminate\Support\Facades\Session; @endphp
     <!doctype html>
 <html lang="en">
 <head>
@@ -13,8 +13,10 @@
         {{csrf_field()}}
         @if($errors->any())
             <p class="text-danger"> {{($errors->all())}}  </p>
-            @endif
-
+        @endif
+        @if(Session::has("success"))
+            <p class="text-primary">{{Session::get("success")}}</p>
+        @endif
         <input type="text" placeholder="Enter a title of movie" name="title">
 
         <textarea placeholder="Enter a description" name="description"></textarea>
