@@ -52,6 +52,9 @@ Route::get("/movies/favourites", function ()
 Route::view("/genres", "movies.allGenres")
 ->name("movies.genre");
 
+Route::get("/genres/results/{genre:genre}", [GenreController::class, "genres"])
+    ->name("movies.genreResults");
+
 Route::get("/search", [MoviesController::class, "search"])
 ->name("movies.search");
 
@@ -82,6 +85,7 @@ Route::middleware(['auth', AdminCheckMiddleware::class])->prefix("admin")->group
     Route::get("/edit-movie/{movie}", [AdminMoviesController::class, "edit"]);
     Route::post("/save-movie/{saveMovie}", [AdminMoviesController::class, "save"])
     ->name("movie.edit");
+    Route::get("/all-users", [AdminMoviesController::class, "users"]);
 });
 
 

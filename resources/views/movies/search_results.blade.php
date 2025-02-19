@@ -15,7 +15,13 @@
                 <h6 class="card-subtitle mb-2 text-muted">{{$movie->genre->genre}}</h6>
                 <p class="card-text">{{$movie->description}}</p>
                 <p  class="card-text">{{$movie->author}}</p>
-                <a href="" class="card-link">Add to favorites</a>
+                @if(in_array($movie->id, $userFavourites))
+                    <a href="{{route("movies.unfavourite", ['movie' => $movie->id])}}" class="card-link">
+                        <i class="fa-solid fa-bookmark"> </i>  </a>
+                @else
+                    <a href="{{route("movies.favourite", ['movie' => $movie->id])}}" class="card-link"><i
+                            class="fa-regular fa-bookmark"></i> </a>
+                @endif
                 <a href="{{route("movies.permalink", ['movie' => $movie->title])}}" class="card-link">Watch</a>
             </div>
         </div>

@@ -11,7 +11,7 @@
 @section("content")
     @foreach(GenreModel::GENRE as $genre)
 
-        <p><a href="">{{$genre}}</a></p>
+        <p><a href="{{route("movies.genreResults", ["genre" => $genre])}}">{{$genre}}</a></p>
 
     @endforeach
 

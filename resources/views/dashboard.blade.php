@@ -1,3 +1,5 @@
+@extends("layout")
+@section("content")
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -10,8 +12,10 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("Welcome to first site's for free streaming and watching movies in pre-order!") }}
+                    <a class="underline" href="/">WATCH</a>
                 </div>
             </div>
         </div>
     </div>
 </x-app-layout>
+@endsection

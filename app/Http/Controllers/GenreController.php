@@ -8,5 +8,9 @@ use Illuminate\Http\Request;
 
 class GenreController extends Controller
 {
-
+    public function genres($genre)
+    {
+        $results = GenreModel::where(['genre' => $genre])->get();
+        return view('movies.genresResults', compact('results'));
+    }
 }

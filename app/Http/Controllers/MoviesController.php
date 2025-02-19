@@ -30,7 +30,15 @@ class MoviesController extends Controller
        {
            return redirect('/')->with("error", "This movie doesn't exist!");
        }
-        return view("movies.search_results", compact("search"));
+        $userFavourites = [];
+        if(Auth::check())
+        {
+            $userFavourites = Auth::user()->movieFavourites;
+            $userFavourites = $userFavourites->pluck("movie_id")->toArray();
+        }
+
+
+        return view("movies.search_results", compact("search", "userFavourites"));
     }
 
     public function permalink(MoviesModel $movie)

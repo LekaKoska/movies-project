@@ -25,7 +25,7 @@
                         <a class="nav-link active" href="{{route("movies.favourites")}}">Favorites</a>
                     </li>
                     <li>
-                        <a class="nav-link active" href="">My profile</a>
+                        <a class="nav-link active" href="{{route("profile.edit")}}">My profile</a>
                     </li>
                     <li>
                         <a class="nav-link active" href="{{route("movies.addForm")}}">Add movie</a>
