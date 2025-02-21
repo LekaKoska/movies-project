@@ -9,7 +9,10 @@
     @extends("layout")
 @section("content")
     @foreach($results as $result)
-        <p>{{ $result->movies}}</p>
+        <div>
+            <p><a class="btn btn-primary" href="{{route("movies.permalink", ["movie" => $result->movies->title])}}">{{ $result->movies->title  }}</a></p>
+        </div>
+
 
     @endforeach
 

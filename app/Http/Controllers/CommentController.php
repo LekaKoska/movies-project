@@ -17,14 +17,14 @@ class CommentController extends Controller
         {
             return redirect()->back()->with(['error' => 'You must be logged to comment!!']);
         }
+
         $request->validate(
             [
-                "content" => "required|max:100",
-                "user_id" => "required|exist:users, id",
-                "movie_id" => "required|exist:movies, id"
-
-            ]);
-
+                "comment" => "required|max:50",
+                "user_id" => "required|exists:users, id",
+                "movie_id" => "required|exists:movies, id"
+            ]
+        );
         CommentModel::create([
             "content" => $request->get("comment"),
             "user_id" => $user->id,
@@ -32,6 +32,7 @@ class CommentController extends Controller
 
         ]);
 
+        return redirect()->back()->with("success", "Your comment has been added");
 
 
 

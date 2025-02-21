@@ -12,7 +12,7 @@ class GenreModel extends Model
     protected $fillable = ["genre", "movie_id"];
     public function movies()
     {
-        return $this->hasMany(MoviesModel::class, 'id', 'movie_id');
+        return $this->hasOne(MoviesModel::class, 'id', 'movie_id');
     }
 
 
