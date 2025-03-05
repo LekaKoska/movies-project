@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\UserMoviesModel;
+use App\Repositories\UserMovieRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserMoviesController extends Controller
 {
+    private $userMovieRepo;
+    public function __construct()
+    {
+        $this->userMovieRepo = new UserMovieRepository();
+    }
     public function favourite(Request $request, $movie)
     {
         $user = Auth::user();
@@ -17,10 +23,8 @@ class UserMoviesController extends Controller
             return redirect()->back()->with("error",  "You must be logged if u want to add movie to favourites!");
         }
 
-        UserMoviesModel::create([
-            'movie_id' => $movie,
-            'user_id' => $user->id
-        ]);
+        $this->userMovieRepo->favouriteMovie($movie, $user);
+
         return redirect()->back();
     }
 
@@ -32,12 +36,11 @@ class UserMoviesController extends Controller
             return redirect()->back()->with("error",  "You must be logged if u want to add movie to favourites!");
         }
 
-       $userFavourite = UserMoviesModel::where([
-           'movie_id' => $movie,
-           'user_id' => $user->id
-       ])->first();
+       $this->userMovieRepo->unfavouriteMovie($movie, $user);
 
-        $userFavourite->delete();
+
+
+
 
         return redirect()->back();
 
