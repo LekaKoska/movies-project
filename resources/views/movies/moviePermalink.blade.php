@@ -20,7 +20,7 @@
 
     <form action="{{route("movies.comment", ["movie" => $movie->id])}}" method="POST">
         {{csrf_field()}}
-        <input type="hidden" name="user_id" value="{{ $user->id}}">
+        <input type="hidden" name="user_id" value="{{$user->id}}">
         <input type="hidden" name="movie_id" value="{{$movie->id}}">
 
         <textarea placeholder="Enter a comment for this movie.." name="comment"></textarea>
