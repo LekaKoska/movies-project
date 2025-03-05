@@ -9,7 +9,7 @@
     @extends("layout")
 
 @section("content")
-    <form action="{{route("movie.edit"), ["saveMovie" => $movie->id ]}}" method="POST">
+    <form action="{{route("movie.edit", ["saveMovie" => $movie->id ])}}" method="POST">
         {{csrf_field()}}
         <input value="{{$movie->title}}" type="text" placeholder="Enter a tittle of movie" name="title">
         <textarea type="text" placeholder="Enter a description" name="description">{{$movie->description}}</textarea>

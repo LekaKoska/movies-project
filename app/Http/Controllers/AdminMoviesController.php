@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\MoviesModel;
 use App\Models\User;
+use App\Repositories\AdminMovieRepository;
 use Illuminate\Http\Request;
 use PhpParser\Node\Expr\AssignOp\Mod;
 
 class AdminMoviesController extends Controller
 {
+    private $adminMovieRepo;
+    public function __construct()
+    {
+        $this->adminMovieRepo = new AdminMovieRepository();
+    }
     public function allMovies()
     {
         $allMovies = MoviesModel::all();
@@ -33,10 +39,7 @@ class AdminMoviesController extends Controller
     }
     public function save(Request $request, MoviesModel $saveMovie)
     {
-        $saveMovie->title = $request->get("title");
-        $saveMovie->description = $request->get("description");
-        $saveMovie->author = $request->get("author");
-        $saveMovie->save();
+        $this->adminMovieRepo->editMovieSave($saveMovie, $request);
         return redirect("/admin/all-movies");
     }
 
