@@ -40,7 +40,7 @@ class AdminMoviesController extends Controller
     public function save(Request $request, MoviesModel $saveMovie)
     {
         $this->adminMovieRepo->editMovieSave($saveMovie, $request);
-        return redirect("/admin/all-movies");
+        return redirect()->route("movie.edit", [$saveMovie->id]);
     }
 
     public function users()

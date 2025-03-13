@@ -27,8 +27,21 @@
         <button>Send</button>
     </form>
     @if(Session::has("success"))
-        <p>{{Session::get("success")}}</p>
+        <p class="text-success">{{Session::get("success")}}</p>
     @endif
+    </div>
+
+    <div>
+        @foreach($movie->comments as $comments)
+        <p>User:  {{$comments->user->name}}
+        <p class="text-secondary fs-6 small">{{$comments->created_at}}</p>
+
+        <p>Comment: {{$comments->content}}</p>
+        @endforeach</p>
+
+
+
+
     </div>
 @endsection
 </body>

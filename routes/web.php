@@ -30,6 +30,13 @@ Route::middleware('auth')->group(function () {
 
 Route::get("/movies", [MoviesController::class, "allMovies"])
 ->name("movies.all");
+Route::get("/search", [MoviesController::class, "search"])
+    ->name("movies.search");
+
+Route::get("movies/{movie:title}", [MoviesController::class, "permalink"])
+    ->name("movies.permalink");
+Route::post("/add/new", [MoviesController::class, "add"])
+    ->name("movies.add");
 
 Route::get("/movies/favourites", function ()
 {
@@ -55,37 +62,38 @@ Route::view("/genres", "movies.allGenres")
 Route::get("/genres/results/{genre:genre}", [GenreController::class, "genres"])
     ->name("movies.genreResults");
 
-Route::get("/search", [MoviesController::class, "search"])
-->name("movies.search");
 
-Route::get("movie/{movie:title}", [MoviesController::class, "permalink"])
-->name("movies.permalink");
 
-Route::post("movie/comment/{movie}", [CommentController::class, "comment"])
+Route::post("movies/comment/{movie}", [CommentController::class, "comment"])
 ->name("movies.comment");
 
 Route::view("/movies/add", 'movies.addMovies')
 ->name("movies.addForm");
 
-Route::post("/movies/add/new", [MoviesController::class, "add"])
-->name("movies.add");
+
 
 Route::get("/movies/addFavourite/{movie}", [UserMoviesController::class, "favourite"])
 ->name("movies.favourite");
 
-Route::get("movies/unfavourite/{movie}", [UserMoviesController::class, "unfavourite"])
+Route::get("/movies/unfavourite/{movie}", [UserMoviesController::class, "unfavourite"])
     ->name("movies.unfavourite");
 
 
 Route::middleware(['auth', AdminCheckMiddleware::class])->prefix("admin")->group(function ()
 {
-    Route::get("/all-movies",[AdminMoviesController::class, "allMovies"]);
-    Route::get("/delete-movie/{id}", [AdminMoviesController::class, "delete"])
-    ->name("movie.delete");
-    Route::get("/edit-movie/{movie}", [AdminMoviesController::class, "edit"]);
-    Route::post("/save-movie/{saveMovie}", [AdminMoviesController::class, "save"])
-    ->name("movie.edit");
-    Route::get("/all-users", [AdminMoviesController::class, "users"]);
+    Route::controller(AdminMoviesController::class)->prefix("/movies")->group(function ()
+    {
+        Route::get("/all", "allMovies");
+        Route::get("/delete/{id}",  "delete")
+            ->name("movie.delete");
+        Route::get("/edit/{movie}",  "edit")
+        ->name("movie.edit");
+        Route::get("/save/{saveMovie}",  "save")
+            ->name("movie.edit");
+        Route::get("/all-users", "users");
+
+    });
+
 });
 
 

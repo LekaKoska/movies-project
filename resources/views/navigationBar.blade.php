@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Session; @endphp
 <!doctype html>
 <html lang="en">
 <head>
@@ -40,8 +41,8 @@
             </div>
         </div>
     </nav>
-    @if(\Illuminate\Support\Facades\Session::has("error"))
-        <p class="text-danger">{{\Illuminate\Support\Facades\Session::get("error")}}</p>
+    @if(Session::has("error"))
+        <p class="text-danger">{{Session::get("error")}}</p>
     @endif
 
 </body>

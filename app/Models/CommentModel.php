@@ -12,13 +12,13 @@ class CommentModel extends Model
 
     public function movie()
     {
-    $this->hasOne(MoviesModel::class, 'id', 'movie_id');
+      return  $this->hasOne(MoviesModel::class, 'id', 'movie_id');
 
     }
 
     public function user()
     {
-        $this->hasOne(User::class, 'id', 'user_id');
+      return  $this->hasOne(User::class, 'id', 'user_id');
     }
 
 }

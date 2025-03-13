@@ -15,7 +15,7 @@ class AdminMovieRepository
     public function editMovieSave($saveMovie, $request)
     {
 
-        $saveMovie->title = $request->get("title");
+     return  $saveMovie->title = $request->get("title");
         $saveMovie->description = $request->get("description");
         $saveMovie->author = $request->get("author");
         $saveMovie->save();

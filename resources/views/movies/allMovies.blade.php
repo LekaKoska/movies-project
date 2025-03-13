@@ -8,7 +8,8 @@
     @endif
     @foreach($movies as $movie)
 
-        <div class="card m-1 container " style="width: 18rem;">
+        <div class="card mt-2 container" style="width: 18rem;">
+
             <div class="card-body">
                 <h5 class="card-title">{{$movie->title}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{$movie->genre->genre}}</h6>
@@ -26,6 +27,7 @@
                 <a href="{{route("movies.permalink", ['movie' => $movie->title])}}" class="card-link">Watch</a>
             </div>
         </div>
+
 
     @endforeach
 @endsection
