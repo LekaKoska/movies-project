@@ -12,9 +12,9 @@ class CommentRepository
         $this->commentModel = new CommentModel();
     }
 
-    public function addComment($request, $user, $movie)
+    public function addComment($request, $user, $movie): void
     {
-        $this->commentModel->create([
+       $this->commentModel->create([
             "content" => $request->get("comment"),
             "user_id" => $user->id,
             "movie_id" => $movie
