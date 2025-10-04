@@ -18,7 +18,7 @@ class MoviesController extends Controller
     }
     public function allMovies()
     {
-        $movies = MoviesModel::all();
+        $movies = MoviesModel::paginate();
        $userFavourites = [];
         if(Auth::check())
         {
