@@ -23,15 +23,9 @@ class CommentController extends Controller
     }
     public function comment(AddCommentRequest $request, $movie): Collection|RedirectResponse
     {
-        $user = Auth::user();
-
-        if($user === null)
-        {
-            return redirect()->back()->with(['error' => 'You must be logged to comment!!']);
-        }
+        $user = $request->user();
 
        $this->commentRepo->addComment($request, $user, $movie);
-
 
         return redirect()->back()->with("success", "Your comment has been added");
 
