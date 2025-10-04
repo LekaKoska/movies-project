@@ -13,7 +13,7 @@ Follow these steps to get the project running locally:
 git clone <YOUR_REPOSITORY_URL>
 cd <YOUR_PROJECT_FOLDER>
 
-2. **Install PHP dependencies**
+2. ##Install PHP dependencies
 ```bash
 composer install
 3. **Install Node.js dependencies and build frontend assets**
