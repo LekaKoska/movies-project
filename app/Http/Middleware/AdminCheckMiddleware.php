@@ -16,7 +16,14 @@ class AdminCheckMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $role = Auth::user()->role;
+        $user = Auth::user();
+
+        if(!$user)
+        {
+            return redirect('/login');
+        }
+
+        $role = $user->role;
         if($role != "admin")
         {
             return redirect("/");
