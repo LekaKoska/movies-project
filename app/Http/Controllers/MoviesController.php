@@ -50,9 +50,7 @@ class MoviesController extends Controller
     public function permalink(MoviesModel $movie): RedirectResponse|View
     {
         $user = Auth::user();
-       return ($user === null)
-           ? redirect()->back()->with("error", "You must be logged to watch this movie")
-           : view("movies.moviePermalink", compact("movie", "user"));
+       return view("movies.moviePermalink", compact("movie", "user"));
 
   }
     public function add(AddMovieRequest $request): MoviesModel|RedirectResponse
