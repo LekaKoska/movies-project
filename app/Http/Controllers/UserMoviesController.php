@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\UserMoviesModel;
 use App\Repositories\UserMovieRepository;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,32 +17,20 @@ class UserMoviesController extends Controller
     {
         $this->userMovieRepo = new UserMovieRepository();
     }
-    public function favourite(Request $request, $movie)
+    public function favourite(Request $request, $movie): RedirectResponse|Collection
     {
-        $user = Auth::user();
-        if($user === null)
-        {
-            return redirect()->back()->with("error",  "You must be logged if u want to add movie to favourites!");
-        }
+        $user = $request->user();
 
         $this->userMovieRepo->favouriteMovie($movie, $user);
 
         return redirect()->back();
     }
 
-    public function unfavourite(Request $request, $movie)
+    public function unfavourite(Request $request, $movie): RedirectResponse
     {
-        $user = Auth::user();
-        if($user === null)
-        {
-            return redirect()->back()->with("error",  "You must be logged if u want to add movie to favourites!");
-        }
+        $user = $request->user();
 
        $this->userMovieRepo->unfavouriteMovie($movie, $user);
-
-
-
-
 
         return redirect()->back();
 
