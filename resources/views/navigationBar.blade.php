@@ -10,14 +10,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Movie Manager</title>
-    <!-- Bootstrap CSS -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Animate.css for subtle animations -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
     <style>
-        /* Hover effect for nav links */
         .navbar-nav .nav-link:hover {
             color: #0d6efd;
             transform: scale(1.05);
@@ -55,7 +52,6 @@
             color: #fff;
         }
 
-        /* Flash error message */
         .flash-error {
             margin-top: 0.5rem;
             text-align: center;
@@ -66,7 +62,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light sticky-top">
     <div class="container">
-        <a class="navbar-brand animate__animated animate__bounceIn" href="{{ route('homepage') }}">
+        <a class="navbar-brand" href="{{ route('homepage') }}">
             <i class="fa-solid fa-video"></i>
         </a>
 
@@ -76,7 +72,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarToggler">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 animate__animated animate__fadeInLeft">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ route('movies.all') }}">Movies</a>
                 </li>
@@ -94,7 +90,7 @@
                 @endauth
             </ul>
 
-            <form class="d-flex animate__animated animate__fadeInRight" action="{{ route('movies.search') }}" method="GET">
+            <form class="d-flex" action="{{ route('movies.search') }}" method="GET">
                 <input class="form-control me-2" type="search" placeholder="Search movies..." aria-label="Search" name="search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
@@ -103,12 +99,11 @@
 </nav>
 
 @if(Session::has("error"))
-    <div class="flash-error text-danger animate__animated animate__shakeX">
+    <div class="flash-error text-danger">
         {{ Session::get("error") }}
     </div>
 @endif
 
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
