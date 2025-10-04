@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AddMovieRequest;
+use App\Http\Requests\SearchRequest;
 use App\Models\MoviesModel;
 use App\Repositories\MoviesRespository;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class MoviesController extends Controller
 {
@@ -16,7 +19,7 @@ class MoviesController extends Controller
     {
         $this->movieRepo = new MoviesRespository();
     }
-    public function allMovies()
+    public function allMovies(): array|View
     {
         $movies = MoviesModel::paginate();
        $userFavourites = [];
@@ -30,7 +33,7 @@ class MoviesController extends Controller
 
     }
 
-    public function search(Request $request)
+    public function search(SearchRequest $request): array|View|RedirectResponse
     {
         $name = $request->get("search");
        $search = $this->movieRepo->searchMovies($name);
@@ -38,27 +41,21 @@ class MoviesController extends Controller
        {
            return redirect('/')->with("error", "This movie doesn't exist!");
        }
-        $userFavourites = [];
-        if(Auth::check())
-        {
-            $userFavourites = Auth::user()->movieFavourites;
-            $userFavourites = $userFavourites->pluck("movie_id")->toArray();
-        }
 
+       $userFavourites = $this->movieRepo->userFavourites();
 
         return view("movies.search_results", compact("search", "userFavourites"));
     }
 
-    public function permalink(MoviesModel $movie)
+    public function permalink(MoviesModel $movie): RedirectResponse|View
     {
         $user = Auth::user();
-        if($user === null)
-        {
-            return redirect()->back()->with("error", "You must be logged to watch this movie");
-        }
-        return view("movies.moviePermalink", compact("movie", "user"));
+       return ($user === null)
+           ? redirect()->back()->with("error", "You must be logged to watch this movie")
+           : view("movies.moviePermalink", compact("movie", "user"));
+
   }
-    public function add(AddMovieRequest $request)
+    public function add(AddMovieRequest $request): MoviesModel|RedirectResponse
     {
 
        $this->movieRepo->addMovie($request);
