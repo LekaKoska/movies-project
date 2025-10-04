@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\GenreModel;
+use Illuminate\Database\Eloquent\Collection;
 
 class GenreRepository
 {
@@ -14,7 +15,7 @@ class GenreRepository
 
     }
 
-    public function getGenreId($id)
+    public function getGenreId($id): Collection
     {
         return $this->genre->where(['genre' => $id])->get();
     }
