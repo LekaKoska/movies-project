@@ -29,8 +29,6 @@ class CommentController extends Controller
 
         return redirect()->back()->with("success", "Your comment has been added");
 
-
-
     }
 
     public function delete(CommentModel $comment): RedirectResponse
