@@ -12,10 +12,10 @@ class AdminMovieRepository
         $this->adminMovieModel = new MoviesModel();
 
     }
-    public function editMovieSave($saveMovie, $request)
+    public function editMovieSave($saveMovie, $request): void
     {
 
-     return  $saveMovie->title = $request->get("title");
+        $saveMovie->title = $request->get("title");
         $saveMovie->description = $request->get("description");
         $saveMovie->author = $request->get("author");
         $saveMovie->save();

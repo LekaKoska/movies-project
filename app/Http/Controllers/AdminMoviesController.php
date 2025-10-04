@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\MoviesModel;
 use App\Models\User;
 use App\Repositories\AdminMovieRepository;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use PhpParser\Node\Expr\AssignOp\Mod;
 
 class AdminMoviesController extends Controller
@@ -15,37 +18,34 @@ class AdminMoviesController extends Controller
     {
         $this->adminMovieRepo = new AdminMovieRepository();
     }
-    public function allMovies()
+    public function allMovies(): Collection|View
     {
-        $allMovies = MoviesModel::all();
+        $allMovies = MoviesModel::paginate();
         return view("admin.moviesTable", compact("allMovies"));
     }
 
-    public function delete(MoviesModel $id)
+    public function delete(MoviesModel $id): RedirectResponse
     {
-        if($id === null)
-        {
-            die("This movie doesn't exist!");
-        }
-
         $id->delete();
         return redirect()->back();
     }
 
-    public function edit(Request $request, MoviesModel $movie)
+    public function edit(Request $request, MoviesModel $movie): View
     {
 
         return view("admin.editMovieForm", compact("movie"));
     }
-    public function save(Request $request, MoviesModel $saveMovie)
+    public function save(Request $request, MoviesModel $movie): RedirectResponse
     {
-        $this->adminMovieRepo->editMovieSave($saveMovie, $request);
-        return redirect()->route("movie.edit", [$saveMovie->id]);
+        $this->adminMovieRepo->editMovieSave($movie, $request);
+
+        return redirect()->route('movie.all')
+            ->with('success', 'Movie updated successfully');
     }
 
-    public function users()
+    public function users(): Collection|View
     {
-        $users = User::all();
+        $users = User::paginate();
 
         return view("admin.allUsers", compact("users"));
     }
