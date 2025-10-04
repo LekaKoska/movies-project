@@ -1,20 +1,18 @@
 @php use App\Models\GenreModel; @endphp
-    <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
-</head>
-<body>
 @extends("layout")
+
 @section("content")
-    @foreach(GenreModel::GENRE as $genre)
+    <div class="container mt-5">
+        <h2 class="mb-4 text-primary">Genres</h2>
 
-        <p><a href="{{route("movies.genreResults", ["genre" => $genre])}}">{{$genre}}</a></p>
-
-    @endforeach
-
+        <div class="row g-3">
+            @foreach(GenreModel::GENRE as $genre)
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="{{ route('movies.genreResults', ['genre' => $genre]) }}" class="btn btn-outline-primary w-100 text-truncate">
+                        {{ $genre }}
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </div>
 @endsection
-</body>
-</html>
