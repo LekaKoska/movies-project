@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserMoviesModel extends Model
 {
-    protected $table = "user_movies";
+    const TABLE = 'user_movies';
+    protected $table = self::TABLE;
 
     protected $fillable = ['user_id', 'movie_id'];
 
