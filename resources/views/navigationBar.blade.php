@@ -80,6 +80,7 @@
                     <a class="nav-link active" href="{{ route('movies.genre') }}">Genre</a>
                 </li>
 
+
                 @auth
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('movies.favourites') }}">Favorites</a>
@@ -87,8 +88,20 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('profile.edit') }}">My Profile</a>
                     </li>
+                    <li class="nav-item">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="nav-link active">Logout</button>
+                        </form>
+                    </li>
                 @endauth
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('login') }}">Login</a>
+                    </li>
+                @endguest
             </ul>
+
 
             <form class="d-flex" action="{{ route('movies.search') }}" method="GET">
                 <input class="form-control me-2" type="search" placeholder="Search movies..." aria-label="Search" name="search">
