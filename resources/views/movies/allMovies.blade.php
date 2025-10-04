@@ -4,7 +4,7 @@
 @section("content")
     <div class="container mt-4">
 
-        {{-- Error Message --}}
+
         @if(Session::has("error"))
             <div class="alert alert-danger d-flex justify-content-between align-items-center">
                 <span>{{ Session::get("error") }}</span>
@@ -12,12 +12,12 @@
             </div>
         @endif
 
-        {{-- Movies Grid --}}
+
         <div class="row g-4">
             @foreach($movies as $movie)
                 <div class="col-md-4 col-lg-3">
                     <div class="card h-100 shadow-sm border-0">
-                        {{-- Ako budeš imao slike, možeš ovde staviti <img class="card-img-top" src="..." alt="..."> --}}
+
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title text-primary">{{ $movie->title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">{{ $movie->genre->genre }}</h6>
@@ -25,7 +25,7 @@
                             <small class="text-muted">By {{ $movie->author }}</small>
                         </div>
                         <div class="card-footer bg-white border-0 d-flex justify-content-between">
-                            {{-- Favourite / Unfavourite --}}
+
                             @if(in_array($movie->id, $userFavourites))
                                 <a href="{{ route('movies.unfavourite', ['movie' => $movie->id]) }}"
                                    class="btn btn-sm btn-outline-danger">
@@ -38,7 +38,7 @@
                                 </a>
                             @endif
 
-                            {{-- Watch button --}}
+
                             <a href="{{ route('movies.permalink', ['movie' => $movie->title]) }}"
                                class="btn btn-sm btn-success">
                                 Watch
@@ -49,7 +49,7 @@
             @endforeach
         </div>
 
-        {{-- Pagination --}}
+
         <div class="mt-4 d-flex justify-content-center">
             {{ $movies->links() }}
         </div>
