@@ -6,7 +6,7 @@
             <h1 class="display-4 animate__animated animate__fadeInDown">Welcome to Movie Browser</h1>
             <p class="lead mt-3 animate__animated animate__fadeInUp animate__delay-1s">
                 This project allows you to explore and watch movies easily.
-                Mark your favorites, leave comments, and enjoy.
+                Mark your favorites, leave comments and enjoy.
             </p>
 
             <div class="mt-4">
