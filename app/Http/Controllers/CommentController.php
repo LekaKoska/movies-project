@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Repositories\CommentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Comment;
 
 class CommentController extends Controller
 {
@@ -28,10 +29,21 @@ class CommentController extends Controller
 
         $this->commentRepo->addComment($request, $user, $movie);
 
+
+
+
+
         return redirect()->back()->with("success", "Your comment has been added");
 
 
 
+    }
 
+    public function delete(CommentModel $comment)
+    {
+
+      $comment->delete();
+
+      return redirect()->back();
     }
 }
