@@ -8,48 +8,35 @@ Movie Manager is a Laravel web application that allows users to browse movies, a
 
 Follow these steps to get the project running locally:
 
-1. **Clone the repository**
-```bash
+ # 1. Clone repository
+```laravel
 git clone <YOUR_REPOSITORY_URL>
 cd <YOUR_PROJECT_FOLDER>
 Install PHP dependencies
-
-bash
-
+```
+ # 2. Install dependecies
+```laravel
 composer install
-Install Node.js dependencies and build frontend assets
-
-bash
-
+```
+ # 3. Install Node.js dependencies and build frontend assets
+```laravel
 npm install
 npm run dev
-Configure environment variables
+```
+ # 4. Configure environment variables
 Copy the example .env file and update database credentials:
-
-bash
+```laravel
 cp .env.example .env
-Then edit .env and set your database connection:
-
-
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=movie_manager
-DB_USERNAME=root
-DB_PASSWORD=
-Generate application key
-
-bash
-
+```
+# 5. Generate application key
+```laravel
 php artisan key:generate
-Run migrations and seed the database (if seeds are provided)
-
-bash
-
+```
+#  6. Run migrations and seeders
+```laravel
 php artisan migrate --seed
-Start the local development server
-
-bash
-
+```
+# 7. Start the local development server
+```laravel
 php artisan serve
+```
