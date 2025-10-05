@@ -12,7 +12,6 @@ Follow these steps to get the project running locally:
 ```laravel
 git clone <YOUR_REPOSITORY_URL>
 cd <YOUR_PROJECT_FOLDER>
-Install PHP dependencies
 ```
  # 2. Install dependecies
 ```laravel
